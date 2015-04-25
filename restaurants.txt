@@ -1,0 +1,3 @@
+Hot Tamale	Mexican	25
+Holy Land	Mediterranean	15
+Cafe Masala	Indian	20

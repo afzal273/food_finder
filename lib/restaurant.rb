@@ -9,7 +9,7 @@ class Restaurant
   end
 
   # instance variables
-  attr_accessor :name, :cusine, :price
+  attr_accessor :name, :cuisine, :price
 
   # class methods which start with self
   def self.file_exists?
@@ -39,13 +39,34 @@ class Restaurant
     # return instances of the restaurant
   end
 
+  def self.build_using_questions
+    args = {}
+
+    print "Restaurant name: "
+    args[:name] =  gets.chomp.strip
+
+    print "Cuisine type: "
+    args[:cuisine] = gets.chomp.strip
+
+    print "Average price: "
+    args[:price] = gets.chomp.strip
+
+    return self.new(args)
+  end
+
   # instance methods
+
+  def initialize(args={})
+    @name    = args[:name]    || ""
+    @cuisine = args[:cuisine] || ""
+    @price   = args[:price]   || ""
+  end
 
   def save
     return false unless Restaurant.file_usable?
     File.open(@@filepath, 'a') do |file|
       # write a tabbed version of the array
-      file.puts "#{[@name, @cusine, @price].join("\t")}\n"
+      file.puts "#{[@name, @cuisine, @price].join("\t")}\n"
     end
     return true
   end
