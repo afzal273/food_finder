@@ -1,11 +1,10 @@
 class Restaurant
-
   # class variables
   @@filepath = nil
 
   # setter method for filepath
-  def self.filepath=(path=nil)
-    @@filepath = File.join(APP_ROOT,path)
+  def self.filepath=(path = nil)
+    @@filepath = File.join(APP_ROOT, path)
   end
 
   # instance variables
@@ -14,24 +13,23 @@ class Restaurant
   # class methods which start with self
   def self.file_exists?
     # class should know if the restaurant file exists
-    if @@filepath && File.exists?(@@filepath)
+    if @@filepath && File.exist?(@@filepath)
       return true
     else
       return false
-      
+
     end
   end
 
   def self.file_usable?
-    return false unless (@@filepath && File.exists?(@@filepath) && File.writable?(@@filepath))
-    return true      
+    return false unless @@filepath && File.exist?(@@filepath) && File.writable?(@@filepath)
+    true
   end
 
-
   def self.create_file
-    #create the restaurant file
+    # create the restaurant file
     File.open(@@filepath, 'w') unless file_exists?
-    return file_usable?
+    file_usable?
   end
 
   def self.saved_restaurants
@@ -42,24 +40,24 @@ class Restaurant
   def self.build_using_questions
     args = {}
 
-    print "Restaurant name: "
+    print 'Restaurant name: '
     args[:name] =  gets.chomp.strip
 
-    print "Cuisine type: "
+    print 'Cuisine type: '
     args[:cuisine] = gets.chomp.strip
 
-    print "Average price: "
+    print 'Average price: '
     args[:price] = gets.chomp.strip
 
-    return self.new(args)
+    new(args)
   end
 
   # instance methods
 
-  def initialize(args={})
-    @name    = args[:name]    || ""
-    @cuisine = args[:cuisine] || ""
-    @price   = args[:price]   || ""
+  def initialize(args = {})
+    @name    = args[:name] || ''
+    @cuisine = args[:cuisine] || ''
+    @price   = args[:price] || ''
   end
 
   def save
@@ -68,8 +66,6 @@ class Restaurant
       # write a tabbed version of the array
       file.puts "#{[@name, @cuisine, @price].join("\t")}\n"
     end
-    return true
+    true
   end
-
-
 end

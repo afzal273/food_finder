@@ -1,29 +1,28 @@
 require 'restaurant'
 class Guide
   class Config
-    @@actions = %w{list find add quit}
+    @@actions = %w(list find add quit)
 
     # reader method
-    def self.actions; @@actions;end
-
-
+    def self.actions
+      @@actions
+    end
   end
 
-  def initialize(path=nil)
+  def initialize(path = nil)
     # locate the restaurant text tile at that path
     # or create a new file
     # exit if create fails
     Restaurant.filepath = path
     if Restaurant.file_usable?
-      puts "Found restaurant file."
+      puts "Found restaurant file.\n"
     elsif Restaurant.create_file
-      puts "Created restaurant file."
+      puts "Created restaurant file.\n"
     else
       puts "Exiting \n\n"
       exit!
     end
   end
-
 
   def launch!
     introduction
@@ -44,32 +43,31 @@ class Guide
     action = nil
     # Keep asking for user input until we get a valid action
     until Guide::Config.actions.include?(action)
-      puts "Actions: " + Guide::Config.actions.join(', ') if action
-      print "> "
+      puts 'Actions: ' + Guide::Config.actions.join(', ') if action
+      print '> '
       user_response = gets.chomp
       action = user_response.downcase.strip
     end
-    return action
+    action
   end
-
 
   def do_action(action)
     case action
     when 'list'
-      puts "Listing ...."
+      puts 'Listing ....'
     when 'find'
-      puts "Finding ...."
+      puts 'Finding ....'
     when 'add'
       add
     when 'quit'
       return :quit
     else
       puts "\n I don't understand that command. \n"
-    end  
+    end
   end
 
   def add
-    puts "\n Add a restaurant \n\n".upcase 
+    puts "\n Add a restaurant \n\n".upcase
 
     # create a restaurant
     restaurant = Restaurant.build_using_questions
@@ -80,9 +78,7 @@ class Guide
     else
       puts "\n Save Error: Restaurant Not Added \n\n"
     end
-
   end
-
 
   def introduction
     puts "\n\n <<< Welcome to the Food Finder >>> \n\n\n"
@@ -92,10 +88,4 @@ class Guide
   def conclusion
     puts "\n <<< Goodbye and Bon Appetit >>> \n\n\n"
   end
-
-
-
-
-
-
 end

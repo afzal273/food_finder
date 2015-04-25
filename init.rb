@@ -1,11 +1,9 @@
-#!/usr/bin/ruby -w 
+#!/usr/bin/ruby -w
 
-## Food Finder ## 
+## Food Finder ##
 # Launch this from command line to get it started
 
-
 APP_ROOT = File.dirname(__FILE__)
-
 
 # require "#{APP_ROOT}/lib/guide"
 # require File.join(APP_ROOT, 'lib', 'guide.rb')
@@ -13,14 +11,11 @@ APP_ROOT = File.dirname(__FILE__)
 
 # $: variable, contains an array of all folders that Ruby will look into it
 
- $:.unshift( File.join(APP_ROOT, 'lib'))
+$LOAD_PATH.unshift(File.join(APP_ROOT, 'lib'))
 
- #puts $:.inspect
+# puts $:.inspect
 
- require 'guide'
+require 'guide'
 
- guide = Guide.new('restaurants.txt')
- guide.launch!
-
- 
-
+guide = Guide.new('restaurants.txt')
+guide.launch!
