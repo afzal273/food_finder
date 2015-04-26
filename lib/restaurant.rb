@@ -1,4 +1,6 @@
+require 'support/number_helper'
 class Restaurant
+  include NumberHelper
   # class variables
   @@filepath = nil
 
@@ -84,4 +86,9 @@ class Restaurant
     end
     true
   end
+  
+  def formatted_price
+    number_to_currency(@price)
+  end
+
 end
