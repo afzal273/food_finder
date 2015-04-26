@@ -2,3 +2,6 @@ Hot Tamale	Mexican	25
 Holy Land	Mediterranean	15
 Cafe Masala	Indian	20
 Jade Garden	Mongolian	15
+sweet tomatoes	salad	10
+pita pocket	mediterranean	12
+House of Falafel	Mediterranean	12

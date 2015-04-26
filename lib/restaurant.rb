@@ -37,7 +37,6 @@ class Restaurant
   def self.saved_restaurants
     # read the restaurant file
     # return instances of the restaurant
-    puts "inside class saved_restaurants method\n"
     restaurants = []
     if file_usable?
       file = File.new(@@filepath,'r')
@@ -86,7 +85,7 @@ class Restaurant
     end
     true
   end
-  
+
   def formatted_price
     number_to_currency(@price)
   end
